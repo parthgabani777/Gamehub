@@ -1,0 +1,38 @@
+.video-card {
+    position: relative;
+}
+.video-card .creator-name {
+    color: var(--light-text-color);
+}
+.video-card .card-body {
+    position: relative;
+    flex-grow: 2;
+}
+.video-card .submenu-btn {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    display: flex;
+    justify-content: center;
+}
+.video-card .submenu-btn:hover {
+    cursor: pointer;
+}
+.video-card .list-group {
+    position: absolute;
+    right: 0;
+    z-index: 2;
+    background-color: var(--black-color);
+}
+.video-card .list-group:hover {
+    cursor: pointer;
+}
+.video-card .card-img {
+    width: 300px;
+    height: 200px;
+}
+.video-card .card-img img {
+    width: 300px;
+    height: 200px;
+}

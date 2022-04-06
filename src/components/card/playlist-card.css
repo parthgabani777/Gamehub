@@ -1,0 +1,15 @@
+.playlist-card .overlay-content {
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    align-items: center;
+    font-size: 3rem;
+    background-color: var(--border-color);
+}
+.playlist-card .card-body {
+    position: relative;
+}

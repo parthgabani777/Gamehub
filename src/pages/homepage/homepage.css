@@ -1,0 +1,40 @@
+main {
+    color: var(--white-color);
+}
+/* Landing img and text */
+.landing {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+.landing::before {
+    background-image: url(../../assets/landing-image.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    content: "";
+    z-index: -1;
+    width: 100%;
+    height: 400px;
+    position: absolute;
+    left: 0;
+    filter: blur(2px);
+}
+.landing-content {
+    height: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 70%;
+    gap: var(--spacing-s);
+}
+.landing-btn {
+    color: var(--white-color);
+    font-size: 2.4rem;
+}
+
+.homepage .trending-title {
+    text-align: left;
+}
