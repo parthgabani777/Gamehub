@@ -7,14 +7,14 @@ function VideoCard({ video }) {
     const [showSubmenu, setShowSubmenu] = useState(false);
 
     return (
-        <Link
-            to="/singlevideo"
-            state={{ video }}
-            className="card card-badge box-shadow video-card"
-        >
-            <div className="card-img bg-primary">
+        <div className="card card-badge box-shadow video-card">
+            <Link
+                to="/singlevideo"
+                state={{ video }}
+                className="card-img bg-primary"
+            >
                 <img src={video.videoImage} alt="Image" />
-            </div>
+            </Link>
             <div className="card-body bg-primary">
                 <div className="card-content p-1">
                     <div className="fw-semibold text-s">{video.title}</div>
@@ -39,7 +39,7 @@ function VideoCard({ video }) {
             ) : (
                 ""
             )}
-        </Link>
+        </div>
     );
 }
 

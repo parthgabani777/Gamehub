@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./video-card.css";
 
 function ActionVideoCard() {
@@ -7,9 +8,13 @@ function ActionVideoCard() {
 
     return (
         <div className="card card-badge box-shadow video-card">
-            <div className="card-img bg-primary">
+            <Link
+                to="/singlevideo"
+                state={{ video }}
+                className="card-img bg-primary"
+            >
                 <img src="https://picsum.photos/id/132/300/200" alt="Image" />
-            </div>
+            </Link>
             <div className="card-body bg-primary">
                 <div className="card-content p-1">
                     <div className="fw-semibold text-s">
