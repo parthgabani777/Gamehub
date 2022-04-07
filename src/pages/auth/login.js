@@ -1,11 +1,16 @@
 import { React, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../context/auth-context";
 import "./auth.css";
 
 function Login() {
+    const navigation = useNavigate();
+    const { setAuthTokens, loginHandler } = useAuth();
+
     const defaultLoginCredentials = {
         email: "adarshbalika@gmail.com",
-        password: "adarshbalika",
+        password: "adarshBalika123",
     };
     const [loginCredentials, setLoginCredentials] = useState(
         defaultLoginCredentials
@@ -73,7 +78,16 @@ function Login() {
                     </div>
 
                     <div className="py-1 text-center">
-                        <button className="btn btn-light auth-btn br-1">
+                        <button
+                            className="btn btn-light auth-btn br-1"
+                            onClick={async () => {
+                                await loginHandler(
+                                    loginCredentials,
+                                    setAuthTokens,
+                                    navigation
+                                );
+                            }}
+                        >
                             Login
                         </button>
                     </div>
