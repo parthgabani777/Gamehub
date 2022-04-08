@@ -3,7 +3,7 @@ import {
     loginHandler,
     signupHandler,
     signoutHandler,
-} from "../services/auth-service";
+} from "../utils/auth/auth-utils";
 
 const defaultAuthValue = {
     isAuthorized: false,
