@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect } from "react";
 import "./single-video.css";
 import { VideoCard } from "../../components/card/video-card";
 import { useVideos } from "../../context/video-context";
@@ -6,8 +6,12 @@ import { useLocation } from "react-router";
 
 function SingleVideo() {
     const { videos, setVideos } = useVideos();
-    const location = useLocation();
-    const { video } = location.state;
+    const { pathname, state } = useLocation();
+    const { video } = state;
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
 
     return (
         <section className="p-2 bg-primary single-video">

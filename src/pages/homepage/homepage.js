@@ -7,8 +7,6 @@ import "./homepage.css";
 function HomePage() {
     const { videos, setVideos } = useVideos();
 
-    console.log(videos);
-
     return (
         <main className="homepage">
             <section className="landing text-l">
@@ -29,7 +27,7 @@ function HomePage() {
                 <h1 className="text-l trending-title p-2">Trending Videos</h1>
                 <div className="card-container p-2">
                     {videos.map((video) => (
-                        <VideoCard video={video} key={video._id}/>
+                        <VideoCard video={video} key={video._id} />
                     ))}
                 </div>
             </section>

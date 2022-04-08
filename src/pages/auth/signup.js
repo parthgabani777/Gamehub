@@ -1,8 +1,13 @@
 import { React, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../context/auth-context";
 import "./auth.css";
 
 function Signup() {
+    const navigation = useNavigate();
+    const { setAuthTokens, signupHandler } = useAuth();
+
     const defaultSignupCredentials = {
         firstname: "",
         lastname: "",
@@ -137,12 +142,13 @@ function Signup() {
                         <button
                             className="btn btn-light auth-btn br-1"
                             onClick={async () => {
-                                if (
-                                    signupCredentials.Password ==
-                                    signupCredentials.confirmPassword
-                                ) {
-                                    console.log(true);
-                                }
+                                signupCredentials.password ===
+                                    signupCredentials.confirmPassword &&
+                                    (await signupHandler(
+                                        signupCredentials,
+                                        setAuthTokens,
+                                        navigation
+                                    ));
                             }}
                         >
                             Create an Account
