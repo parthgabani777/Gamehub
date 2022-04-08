@@ -1,4 +1,5 @@
 import { findVideo } from "../utils/utils";
+import { watchLaterConstant } from "./reducerConstant";
 
 const watchLaterReducer = (state, action) => {
     const { itemInWatchLater } = state;
@@ -6,7 +7,7 @@ const watchLaterReducer = (state, action) => {
     const { id } = video ?? {};
 
     switch (action.type) {
-        case "ADD_TO_WATCHLATER":
+        case watchLaterConstant.ADD_TO_WATCHLATER:
             let isItemInWatchLater = findVideo(itemInWatchLater, video);
             return isItemInWatchLater
                 ? state
@@ -15,7 +16,7 @@ const watchLaterReducer = (state, action) => {
                       itemInWatchLater: itemInWatchLater.concat(video),
                   };
 
-        case "REMOVE_FROM_WATCHLATER":
+        case watchLaterConstant.REMOVE_FROM_WATCHLATER:
             return {
                 ...state,
                 itemInWatchLater: itemInWatchLater.filter(
@@ -23,12 +24,12 @@ const watchLaterReducer = (state, action) => {
                 ),
             };
 
-        case "SET_WATCHLATER":
+        case watchLaterConstant.SET_WATCHLATER:
             return {
                 itemInWatchLater: action.payload,
             };
 
-        case "RESET_WATCHLATER":
+        case watchLaterConstant.RESET_WATCHLATER:
             return {
                 itemInWatchLater: [],
             };

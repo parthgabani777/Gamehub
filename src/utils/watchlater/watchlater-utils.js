@@ -3,13 +3,14 @@ import {
     getWatchLater,
     removeFromWatchLater,
 } from "../../services/watchlater-service";
+import { watchLaterConstant } from "../../reducer/reducerConstant";
 
 const getWatchLaterHandler = async (encodedToken, dispatchWishlist) => {
     const { watchlater } = (await getWatchLater(encodedToken)) ?? {
         watchlater: [],
     };
     dispatchWishlist({
-        type: "SET_WATCHLATER",
+        type: watchLaterConstant.SET_WATCHLATER,
         payload: watchlater,
     });
 };
@@ -21,7 +22,7 @@ const addToWatchLaterHandler = async (
 ) => {
     (await addToWatchLater(encodedToken, video)) &&
         dispatchWatchLater({
-            type: "ADD_TO_WATCHLATER",
+            type: watchLaterConstant.ADD_TO_WATCHLATER,
             payload: { video },
         });
 };
@@ -33,14 +34,14 @@ const removeFromWatchLaterHandler = async (
 ) => {
     (await removeFromWatchLater(encodedToken, video._id)) &&
         dispatchWatchLater({
-            type: "REMOVE_FROM_WATCHLATER",
+            type: watchLaterConstant.REMOVE_FROM_WATCHLATER,
             payload: { video },
         });
 };
 
 const resetWatchLaterHandler = () => {
     dispatchWatchLater({
-        type: "RESET_WATCHLATER",
+        type: watchLaterConstant.RESET_WATCHLATER,
     });
 };
 
