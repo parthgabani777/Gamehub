@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const getWatchLater = async (encodedToken) => {
+const getLikedVideos = async (encodedToken) => {
     try {
-        const { data } = await axios.get("/api/user/watchlater", {
+        const { data } = await axios.get("/api/user/likes", {
             headers: {
                 authorization: encodedToken,
             },
@@ -13,10 +13,10 @@ const getWatchLater = async (encodedToken) => {
     }
 };
 
-const addToWatchLater = async (encodedToken, video) => {
+const addToLikedVideos = async (encodedToken, video) => {
     try {
         const { data } = await axios.post(
-            "/api/user/watchlater",
+            "/api/user/likes",
             { video },
             {
                 headers: {
@@ -31,9 +31,9 @@ const addToWatchLater = async (encodedToken, video) => {
     }
 };
 
-const removeFromWatchLater = async (encodedToken, videoId) => {
+const removeFromLikedVideos = async (encodedToken, videoId) => {
     try {
-        const { data } = await axios.delete(`/api/user/watchlater/${videoId}`, {
+        const { data } = await axios.delete(`/api/user/likes/${videoId}`, {
             headers: {
                 authorization: encodedToken,
             },
@@ -45,4 +45,4 @@ const removeFromWatchLater = async (encodedToken, videoId) => {
     }
 };
 
-export { getWatchLater, addToWatchLater, removeFromWatchLater };
+export { getLikedVideos, addToLikedVideos, removeFromLikedVideos };

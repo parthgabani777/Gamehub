@@ -14,6 +14,9 @@ function Sidemenu() {
             <NavLink to="/playlist" activeclassname="active" className="btn">
                 Playlist
             </NavLink>
+            <NavLink to="/likes" activeclassname="active" className="btn">
+                Likes
+            </NavLink>
             <NavLink to="/watchlater" activeclassname="active" className="btn">
                 Watch Later
             </NavLink>

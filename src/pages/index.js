@@ -6,6 +6,7 @@ import { Signup } from "./auth/signup";
 import { WatchLater } from "./watch-later/watch-later";
 import { History } from "./history/history";
 import { SingleVideo } from "./single-video/single-video";
+import { Likes } from "./likes/likes";
 
 export {
     HomePage,
@@ -16,4 +17,5 @@ export {
     WatchLater,
     History,
     SingleVideo,
+    Likes,
 };

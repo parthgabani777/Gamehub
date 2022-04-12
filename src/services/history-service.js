@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const getWatchLater = async (encodedToken) => {
+const getHistory = async (encodedToken) => {
     try {
-        const { data } = await axios.get("/api/user/watchlater", {
+        const { data } = await axios.get("/api/user/history", {
             headers: {
                 authorization: encodedToken,
             },
@@ -13,10 +13,10 @@ const getWatchLater = async (encodedToken) => {
     }
 };
 
-const addToWatchLater = async (encodedToken, video) => {
+const addToHistory = async (encodedToken, video) => {
     try {
         const { data } = await axios.post(
-            "/api/user/watchlater",
+            "/api/user/history",
             { video },
             {
                 headers: {
@@ -31,9 +31,9 @@ const addToWatchLater = async (encodedToken, video) => {
     }
 };
 
-const removeFromWatchLater = async (encodedToken, videoId) => {
+const removeFromHistory = async (encodedToken, videoId) => {
     try {
-        const { data } = await axios.delete(`/api/user/watchlater/${videoId}`, {
+        const { data } = await axios.delete(`/api/user/history/${videoId}`, {
             headers: {
                 authorization: encodedToken,
             },
@@ -45,4 +45,18 @@ const removeFromWatchLater = async (encodedToken, videoId) => {
     }
 };
 
-export { getWatchLater, addToWatchLater, removeFromWatchLater };
+const clearHistory = async (encodedToken) => {
+    try {
+        const { data } = await axios.delete("/api/user/history/all", {
+            headers: {
+                authorization: encodedToken,
+            },
+        });
+        return true;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+};
+
+export { getHistory, addToHistory, removeFromHistory, clearHistory };
