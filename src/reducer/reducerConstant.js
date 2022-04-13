@@ -5,4 +5,18 @@ const watchLaterConstant = {
     RESET_WATCHLATER: "RESET_WATCHLATER",
 };
 
-export { watchLaterConstant };
+const likesConstant = {
+    SET_LIKEDVIDEOS: "SET_LIKEDVIDEOS",
+    ADD_TO_LIKEDVIDEOS: "ADD_TO_LIKEDVIDEOS",
+    REMOVE_FROM_LIKEDVIDEOS: "REMOVE_FROM_LIKEDVIDEOS",
+    RESET_LIKEDVIDEOS: "RESET_LIKEDVIDEOS",
+};
+
+const historyConstant = {
+    SET_HISTORY: "SET_HISTORY",
+    ADD_TO_HISTORY: "ADD_TO_HISTORY",
+    REMOVE_FROM_HISTORY: "REMOVE_FROM_HISTORY",
+    RESET_HISTORY: "RESET_HISTORY",
+};
+
+export { watchLaterConstant, likesConstant, historyConstant };

@@ -1,0 +1,11 @@
+.history {
+    min-height: 100vh;
+}
+.history .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.history .clear-history-btn {
+    height: fit-content;
+}

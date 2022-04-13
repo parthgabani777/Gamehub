@@ -33,3 +33,6 @@
 .single-video .video-action > *:hover {
     cursor: pointer;
 }
+.single-video .fa-thumbs-up.active {
+    color: blue;
+}
