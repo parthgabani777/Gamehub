@@ -1,0 +1,17 @@
+.playlist {
+    min-height: 100vh;
+}
+.playlist .add-playlist {
+    display: flex;
+    gap: 1rem;
+    padding: 2rem 0;
+}
+.playlist .add-playlist input {
+    background-color: var(--border-color);
+    padding: 0 1rem;
+    border: none;
+}
+.playlist .add-playlist .add-playlist-btn {
+    padding: 0.5rem 1rem;
+    width: fit-content;
+}

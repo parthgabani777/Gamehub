@@ -1,9 +1,10 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import "./single-video.css";
 import { VideoCard } from "../../components/card/video-card";
 import { useLocation, useNavigate } from "react-router";
 import { useAuth, useHistory, useLikedVideos, useVideos } from "../../context";
 import { findVideo } from "../../utils/utils";
+import { PlaylistModal } from "../playlist/playlist-modal";
 
 function SingleVideo() {
     const { videos } = useVideos();
@@ -52,6 +53,8 @@ function SingleVideo() {
         );
     };
 
+    const [showModal, setShowModal] = useState(false);
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
@@ -74,7 +77,10 @@ function SingleVideo() {
                         <div className="video-action text-m">
                             {likesBtn()}
                             <i className="fas fa-clock"></i>
-                            <i className="fas fa-list"></i>
+                            <i
+                                className="fas fa-list"
+                                onClick={() => setShowModal(!showModal)}
+                            ></i>
                         </div>
                     </div>
                 </div>
@@ -87,6 +93,12 @@ function SingleVideo() {
                     ))}
                 </div>
             </div>
+
+            {showModal ? (
+                <PlaylistModal video={video} modalToggler={setShowModal} />
+            ) : (
+                ""
+            )}
         </section>
     );
 }
