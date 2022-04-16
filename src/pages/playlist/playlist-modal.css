@@ -47,6 +47,7 @@
 }
 .modal .add-playlist input {
     background-color: var(--border-color);
+    color: var(--white-color);
     padding: 0 1rem;
     border: none;
 }

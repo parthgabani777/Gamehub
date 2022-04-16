@@ -33,9 +33,11 @@ function Playlist() {
     return (
         <section className="p-2 bg-primary playlist">
             <div className="heading">
-                <h1 className="text-l p-2">Playlist</h1>
+                <h1 className="text-l p-2">
+                    Playlist ({itemInPlaylists.length})
+                </h1>
                 <button
-                    className="clear-history-btn btn btn-light br-1 text-s"
+                    className="add-playlist-btn btn btn-light br-1 text-s"
                     onClick={() => setShowAddPlaylist(!showAddPlaylist)}
                 >
                     Add Playlist
@@ -43,7 +45,7 @@ function Playlist() {
             </div>
 
             {showAddPlaylist ? (
-                <div class="add-playlist">
+                <div className="add-playlist">
                     <input
                         type="text"
                         placeholder="Enter title"

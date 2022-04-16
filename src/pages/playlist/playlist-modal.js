@@ -58,7 +58,7 @@ function PlaylistModal({ video, modalToggler }) {
     return (
         <div className="modal text-s">
             <div className="modal-content bg-primary p-2">
-                <span class="close" onClick={() => modalToggler(false)}>
+                <span className="close" onClick={() => modalToggler(false)}>
                     &times;
                 </span>
                 <div className="playlist-item list-group">
@@ -95,7 +95,7 @@ function PlaylistModal({ video, modalToggler }) {
                     Create New
                 </button>
                 {showAddPlaylist ? (
-                    <div class="add-playlist">
+                    <div className="add-playlist">
                         <input
                             type="text"
                             placeholder="Enter title"
