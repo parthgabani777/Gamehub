@@ -33,6 +33,7 @@ function PlaylistModal({ video, modalToggler }) {
                 dispatchPlaylists,
                 addPlaylistValue
             ));
+        setAddPlaylistValue(defaultAddPlaylistValue);
     };
 
     const isVideoInPlaylist = (videos, video) => {
@@ -100,6 +101,7 @@ function PlaylistModal({ video, modalToggler }) {
                             type="text"
                             placeholder="Enter title"
                             className="text-s"
+                            value={addPlaylistValue.title}
                             onChange={(e) =>
                                 setAddPlaylistValue({
                                     ...addPlaylistValue,

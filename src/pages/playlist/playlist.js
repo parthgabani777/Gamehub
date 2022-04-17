@@ -22,6 +22,7 @@ function Playlist() {
     const [showAddPlaylist, setShowAddPlaylist] = useState(false);
 
     const addPlaylist = async () => {
+        setAddPlaylistValue(defaultAddPlaylistValue);
         addPlaylistValue.title != "" &&
             (await addPlaylistHandler(
                 token,
@@ -50,6 +51,7 @@ function Playlist() {
                         type="text"
                         placeholder="Enter title"
                         className="text-s"
+                        value={addPlaylistValue.title}
                         onChange={(e) =>
                             setAddPlaylistValue({
                                 ...addPlaylistValue,
