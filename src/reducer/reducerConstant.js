@@ -19,4 +19,14 @@ const historyConstant = {
     RESET_HISTORY: "RESET_HISTORY",
 };
 
-export { watchLaterConstant, likesConstant, historyConstant };
+const playlistConstant = {
+    SET_PLAYLIST: "SET_PLAYLIST",
+    RESET_PLAYLIST: "RESET_PLAYLIST",
+    ADD_PLAYLIST: "ADD_PLAYLIST",
+    REMOVE_PLAYLIST: "REMOVE_PLAYLIST",
+    GET_PLAYLIST_VIDEOS: "GET_PLAYLIST_VIDEOS",
+    ADD_VIDEO_TO_PLAYLIST: "ADD_VIDEO_TO_PLAYLIST",
+    REMOVE_VIDEO_FROM_PLAYLIST: "REMOVE_VIDEO_FROM_PLAYLIST",
+};
+
+export { watchLaterConstant, likesConstant, historyConstant, playlistConstant };

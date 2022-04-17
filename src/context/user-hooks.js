@@ -4,6 +4,7 @@ import {
     WatchLaterProvider,
     HistoryProvider,
     LikedVideosProvider,
+    PlaylistsProvider,
 } from "./";
 
 const UserDataProvider = ({ children }) => {
@@ -12,7 +13,9 @@ const UserDataProvider = ({ children }) => {
             <VideoProvider>
                 <WatchLaterProvider>
                     <HistoryProvider>
-                        <LikedVideosProvider>{children}</LikedVideosProvider>
+                        <LikedVideosProvider>
+                            <PlaylistsProvider>{children}</PlaylistsProvider>
+                        </LikedVideosProvider>
                     </HistoryProvider>
                 </WatchLaterProvider>
             </VideoProvider>

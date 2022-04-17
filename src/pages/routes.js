@@ -11,14 +11,14 @@ import {
     SingleVideo,
     Likes,
 } from "./";
+import { PlaylistVideos } from "./playlist/playlist-videos";
 
 function PageRoutes() {
-
     const location = useLocation();
 
     useEffect(() => {
-        window.scrollTo(0,0);
-    },[location]);
+        window.scrollTo(0, 0);
+    }, [location]);
 
     return (
         <Routes>
@@ -30,6 +30,7 @@ function PageRoutes() {
             <Route path="signup" element={<Signup />} />
             <Route path="history" element={<History />} />
             <Route path="playlist" element={<Playlist />} />
+            <Route path="playlist-video" element={<PlaylistVideos />} />
             <Route path="watchlater" element={<WatchLater />} />
             <Route path="likes" element={<Likes />} />
         </Routes>
