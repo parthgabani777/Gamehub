@@ -1,12 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { React, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import "../css/header.css";
 import { useNavigate } from "react-router";
 import { useAuth } from "../context/auth-context";
+import { Sidemenu } from "./sidemenu";
+import { NavLinks } from "./nav-link";
 
 function Header() {
     const { auth, signoutHandler, removeAuthTokens } = useAuth();
     const navigation = useNavigate();
+
+    const [showNavItems, setShowNavItems] = useState(false);
 
     return (
         <header>
@@ -30,11 +34,36 @@ function Header() {
                     </button>
                 </div>
 
-                <ul className="nav-item-group text-s">
-                    <li className="nav-item">
+                <div
+                    className="humburger text-l"
+                    onClick={() => {
+                        setShowNavItems(!showNavItems);
+                    }}
+                >
+                    <i className="fas fa-bars btn"></i>
+                </div>
+
+                <ul
+                    className={`nav-item-group text-s ${
+                        showNavItems
+                            ? "nav-item-group-show"
+                            : "nav-item-group-hide"
+                    }`}
+                >
+                    <span className="nav-links">
+                        <NavLinks />
+                    </span>
+
+                    <li
+                        className={`nav-item ${
+                            showNavItems
+                                ? "nav-item-group-show"
+                                : "nav-item-group-hide"
+                        }`}
+                    >
                         {auth.isAuthorized ? (
                             <a
-                                className="nav-link btn"
+                                className="nav-link btn login-btn-large"
                                 onClick={() => {
                                     signoutHandler(
                                         removeAuthTokens,
@@ -51,10 +80,6 @@ function Header() {
                         )}
                     </li>
                 </ul>
-
-                <div className="humburger text-l">
-                    <i className="fas fa-bars btn"></i>
-                </div>
             </nav>
         </header>
     );

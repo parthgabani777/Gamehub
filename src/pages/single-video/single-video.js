@@ -86,11 +86,16 @@ function SingleVideo() {
                 </div>
             </div>
             <div className="recommended-video">
+                <p className="text-m py-2 recommended-title">
+                    Recommended Videos
+                </p>
                 <div className="card-container">
-                    <p className="text-m">Recommended Videos</p>
-                    {videos.map((video) => (
-                        <VideoCard video={video} key={video._id} />
-                    ))}
+                    {videos.map(
+                        (video, index) =>
+                            index < 6 && (
+                                <VideoCard video={video} key={video._id} />
+                            )
+                    )}
                 </div>
             </div>
 

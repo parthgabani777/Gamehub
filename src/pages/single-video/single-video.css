@@ -1,6 +1,6 @@
 .single-video {
     display: flex;
-    gap: 2rem;
+    gap: 5rem;
 }
 .single-video .video-content {
     flex: 70%;
@@ -35,4 +35,22 @@
 }
 .single-video .fa-thumbs-up.active {
     color: blue;
+}
+
+@media only screen and (max-width: 1200px) {
+    .single-video {
+        flex-direction: column;
+    }
+    .single-video .video-content {
+        flex: 100%;
+    }
+    .single-video .recommended-video {
+        flex: 100%;
+    }
+    .single-video .card-container {
+        justify-content: center;
+    }
+    .recommended-title {
+        text-align: center;
+    }
 }
