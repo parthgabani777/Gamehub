@@ -1,12 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { React, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import "../css/header.css";
 import { useNavigate } from "react-router";
 import { useAuth } from "../context/auth-context";
+import { Sidemenu } from "./sidemenu";
 
 function Header() {
     const { auth, signoutHandler, removeAuthTokens } = useAuth();
     const navigation = useNavigate();
+
+    const [showNavItems, setShowNavItems] = useState(false);
 
     return (
         <header>
@@ -30,11 +33,94 @@ function Header() {
                     </button>
                 </div>
 
-                <ul className="nav-item-group text-s">
-                    <li className="nav-item">
-                        {auth.isAuthorized ? (
+                <div
+                    className="humburger text-l"
+                    onClick={() => {
+                        setShowNavItems(!showNavItems);
+                    }}
+                >
+                    <i className="fas fa-bars btn"></i>
+                </div>
+
+                <ul
+                    className={`nav-item-group text-s ${
+                        showNavItems
+                            ? "nav-item-group-show"
+                            : "nav-item-group-hide"
+                    }`}
+                >
+                    <span className="nav-links">
+                        <NavLink
+                            to="/homepage"
+                            activeclassname="active"
+                            className="btn"
+                        >
+                            Home
+                        </NavLink>
+                        <NavLink
+                            to="/videos"
+                            activeclassname="active"
+                            className="btn"
+                        >
+                            Explore
+                        </NavLink>
+                        <NavLink
+                            to="/playlist"
+                            activeclassname="active"
+                            className="btn"
+                        >
+                            Playlist
+                        </NavLink>
+                        <NavLink
+                            to="/likes"
+                            activeclassname="active"
+                            className="btn"
+                        >
+                            Likes
+                        </NavLink>
+                        <NavLink
+                            to="/watchlater"
+                            activeclassname="active"
+                            className="btn"
+                        >
+                            Watch Later
+                        </NavLink>
+                        <NavLink
+                            to="/history"
+                            activeclassname="active"
+                            className="btn"
+                        >
+                            History
+                        </NavLink>
+                        {/* {auth.isAuthorized ? (
                             <a
                                 className="nav-link btn"
+                                onClick={() => {
+                                    signoutHandler(
+                                        removeAuthTokens,
+                                        navigation
+                                    );
+                                }}
+                            >
+                                Logout
+                            </a>
+                        ) : (
+                            <Link to="login" className="nav-link btn">
+                                Login
+                            </Link>
+                        )} */}
+                    </span>
+
+                    <li
+                        className={`nav-item ${
+                            showNavItems
+                                ? "nav-item-group-show"
+                                : "nav-item-group-hide"
+                        }`}
+                    >
+                        {auth.isAuthorized ? (
+                            <a
+                                className="nav-link btn login-btn-large"
                                 onClick={() => {
                                     signoutHandler(
                                         removeAuthTokens,
@@ -51,10 +137,6 @@ function Header() {
                         )}
                     </li>
                 </ul>
-
-                <div className="humburger text-l">
-                    <i className="fas fa-bars btn"></i>
-                </div>
             </nav>
         </header>
     );

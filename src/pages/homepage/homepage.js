@@ -23,12 +23,51 @@ function HomePage() {
                 </div>
             </section>
 
+            <section className="category bg-primary">
+                <p className="text-l fw-bold text-center p-2">
+                    Search By Category
+                </p>
+                <div className="category-container">
+                    <Link
+                        to="/videos"
+                        state="Valorant"
+                        className="category-card text-l box-shadow card-valorant"
+                    >
+                        <p>Valorant</p>
+                    </Link>
+                    <Link
+                        to="/videos"
+                        state="Counter-Strike: Global Offensive"
+                        className="category-card text-l box-shadow card-csgo"
+                    >
+                        <p>CS: go</p>
+                    </Link>
+                    <Link
+                        to="/videos"
+                        state="Fortnite"
+                        className="category-card text-l box-shadow card-fortnite"
+                    >
+                        <p>Fortnite</p>
+                    </Link>
+                    <Link
+                        to="/videos"
+                        state="Apex Legends"
+                        className="category-card text-l box-shadow card-apex"
+                    >
+                        <p>Apex Legends</p>
+                    </Link>
+                </div>
+            </section>
+
             <section className="p-2 bg-primary">
                 <h1 className="text-l trending-title p-2">Trending Videos</h1>
                 <div className="card-container p-2">
-                    {videos.map((video) => (
-                        <VideoCard video={video} key={video._id} />
-                    ))}
+                    {videos.map(
+                        (video, index) =>
+                            index < 3 && (
+                                <VideoCard video={video} key={video._id} />
+                            )
+                    )}
                 </div>
             </section>
         </main>

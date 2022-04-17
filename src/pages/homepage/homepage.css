@@ -38,3 +38,42 @@ main {
 .homepage .trending-title {
     text-align: left;
 }
+
+/* category section */
+.homepage .category-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-s);
+}
+.homepage .category-card {
+    min-width: 23rem;
+    min-height: 23rem;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: no-repeat center center;
+    background-size: cover;
+    box-shadow: inset 0 0 20rem var(--black-color);
+    color: var(--white-color);
+}
+.homepage .category-card:hover {
+    cursor: pointer;
+    opacity: 0.85;
+    color: var(--light-text-color);
+}
+
+/* category cards */
+.homepage .card-valorant {
+    background: url(../../assets/valorant.webp);
+}
+.homepage .card-csgo {
+    background: url(../../assets/csgo.jpg);
+}
+.homepage .card-apex {
+    background: url(../../assets/apex.jpg);
+}
+.homepage .card-fortnite {
+    background: url(../../assets/fortnite.webp);
+}

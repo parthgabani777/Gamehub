@@ -39,6 +39,22 @@ header {
     display: none;
     color: var(--white-color);
 }
+.navbar .nav-item-group-hide {
+    display: none;
+}
+.navbar .nav-item-group-show {
+    display: flex;
+}
+.navbar .nav-item {
+    display: block;
+}
+.navbar .login-btn-large {
+    display: block;
+    margin: 0 2rem;
+}
+.nav-links {
+    display: none;
+}
 
 @media only screen and (min-width: 1200px) {
     .nav-item-group {
@@ -48,7 +64,7 @@ header {
 
 @media only screen and (max-width: 1200px) {
     .nav-item-group {
-        display: none;
+        /* display: none; */
         width: 100%;
         margin-left: auto;
         flex-direction: column;
@@ -61,6 +77,13 @@ header {
     }
     .humburger {
         display: block;
+    }
+    .login-btn-large {
+        display: none;
+    }
+    .nav-links {
+        display: flex;
+        flex-direction: column;
     }
 }
 

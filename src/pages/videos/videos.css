@@ -1,3 +1,4 @@
 .videos {
     color: var(--white-color);
+    min-height: 100vh;
 }
