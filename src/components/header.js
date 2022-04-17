@@ -4,6 +4,7 @@ import "../css/header.css";
 import { useNavigate } from "react-router";
 import { useAuth } from "../context/auth-context";
 import { Sidemenu } from "./sidemenu";
+import { NavLinks } from "./nav-link";
 
 function Header() {
     const { auth, signoutHandler, removeAuthTokens } = useAuth();
@@ -50,65 +51,7 @@ function Header() {
                     }`}
                 >
                     <span className="nav-links">
-                        <NavLink
-                            to="/homepage"
-                            activeclassname="active"
-                            className="btn"
-                        >
-                            Home
-                        </NavLink>
-                        <NavLink
-                            to="/videos"
-                            activeclassname="active"
-                            className="btn"
-                        >
-                            Explore
-                        </NavLink>
-                        <NavLink
-                            to="/playlist"
-                            activeclassname="active"
-                            className="btn"
-                        >
-                            Playlist
-                        </NavLink>
-                        <NavLink
-                            to="/likes"
-                            activeclassname="active"
-                            className="btn"
-                        >
-                            Likes
-                        </NavLink>
-                        <NavLink
-                            to="/watchlater"
-                            activeclassname="active"
-                            className="btn"
-                        >
-                            Watch Later
-                        </NavLink>
-                        <NavLink
-                            to="/history"
-                            activeclassname="active"
-                            className="btn"
-                        >
-                            History
-                        </NavLink>
-                        {/* {auth.isAuthorized ? (
-                            <a
-                                className="nav-link btn"
-                                onClick={() => {
-                                    signoutHandler(
-                                        removeAuthTokens,
-                                        navigation
-                                    );
-                                }}
-                            >
-                                Logout
-                            </a>
-                        ) : (
-                            <Link to="login" className="nav-link btn">
-                                Login
-                            </Link>
-                        )} */}
+                        <NavLinks />
                     </span>
 
                     <li

@@ -1,4 +1,4 @@
-import React from "react";
+import { React } from "react";
 import "./videos.css";
 import { VideoCard } from "../../components/card/video-card";
 import { useVideos } from "../../context/video-context";
@@ -12,8 +12,9 @@ function Videos() {
         return videos.filter((video) => video.categoryName === categoryName);
     };
 
-    const videosTemp = category && filterByCategory(videos, category);
-    const filteredVideos = videosTemp ?? videos;
+    const filteredVideos = category
+        ? filterByCategory(videos, category)
+        : videos;
 
     return (
         <section className="p-2 bg-primary videos">
