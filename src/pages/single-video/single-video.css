@@ -33,8 +33,9 @@
 .single-video .video-action > *:hover {
     cursor: pointer;
 }
-.single-video .fa-thumbs-up.active {
-    color: blue;
+.single-video .fa-thumbs-up.active,
+.single-video .fa-clock.active {
+    color: var(--secondary-color);
 }
 
 @media only screen and (max-width: 1200px) {

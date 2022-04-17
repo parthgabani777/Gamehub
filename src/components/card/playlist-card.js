@@ -31,6 +31,14 @@ function PlaylistCard({ playlist }) {
         await removePlaylistHandler(auth.token, dispatchPlaylists, playlist);
     };
 
+    const defaultPlaylistImage =
+        "https://www.linkpicture.com/q/LPic625bd78f1d2351633196871.jpg";
+
+    const playlistImage =
+        playlist.videos.length > 0
+            ? playlist.videos[0].videoImage
+            : defaultPlaylistImage;
+
     return (
         <div className="card card-badge box-shadow video-card playlist-card">
             <Link
@@ -38,7 +46,7 @@ function PlaylistCard({ playlist }) {
                 state={{ playlist }}
                 className="card-img bg-primary img-overlay"
             >
-                <img src="https://picsum.photos/id/132/300/200" alt="Image" />
+                <img src={playlistImage} alt="Image" />
                 <div className="playlist-image overlay-content">
                     <i className="fas fa-list"></i>
                     <span className="text-m">{playlist.videos.length}</span>
