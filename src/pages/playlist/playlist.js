@@ -1,11 +1,13 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import "./playlist.css";
 import { PlaylistCard } from "../../components/card/playlist-card";
 import { useAuth, usePlaylists } from "../../context";
+import { useNavigate } from "react-router";
 
 function Playlist() {
     const { playlists, dispatchPlaylists, addPlaylistHandler } = usePlaylists();
     const { itemInPlaylists } = playlists;
+    const navigation = useNavigate();
 
     const { auth } = useAuth();
     const { token } = auth;
@@ -20,6 +22,10 @@ function Playlist() {
     );
 
     const [showAddPlaylist, setShowAddPlaylist] = useState(false);
+
+    useEffect(() => {
+        auth.isAuthorized || navigation("/login");
+    }, []);
 
     const addPlaylist = async () => {
         setAddPlaylistValue(defaultAddPlaylistValue);
