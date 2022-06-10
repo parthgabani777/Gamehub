@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const getPlaylists = async (encodedToken) => {
     try {
@@ -9,7 +10,7 @@ const getPlaylists = async (encodedToken) => {
         });
         return data;
     } catch (error) {
-        console.log(error);
+        toast.error("Can not get platlists.");
     }
 };
 
@@ -26,7 +27,7 @@ const addPlaylist = async (encodedToken, video) => {
         );
         return data.playlists;
     } catch (error) {
-        console.log(error);
+        toast.error("Playlist can not be created.");
         return false;
     }
 };
@@ -40,7 +41,7 @@ const removePlaylist = async (encodedToken, videoId) => {
         });
         return true;
     } catch (error) {
-        console.log(error);
+        toast.error("Playlist can not be removed.");
         return false;
     }
 };
@@ -54,7 +55,7 @@ const getPlaylistVideos = async (encodedToken, playlistId) => {
         });
         return data;
     } catch (error) {
-        console.log(error);
+        toast.error("Can not get playlist video.");
     }
 };
 
@@ -71,7 +72,7 @@ const addVideoToPlaylist = async (encodedToken, playlistId, video) => {
         );
         return true;
     } catch (error) {
-        console.log(error);
+        toast.error("Video can not be added to playlist.");
         return false;
     }
 };
@@ -88,7 +89,7 @@ const removeVideoFromPlaylist = async (encodedToken, playlistId, videoId) => {
         );
         return true;
     } catch (error) {
-        console.log(error);
+        toast.error("Video can not be removed from playlist.");
         return false;
     }
 };

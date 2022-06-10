@@ -10,7 +10,7 @@ function SingleVideo() {
     const { videos } = useVideos();
     const { pathname, state } = useLocation();
     const { video } = state;
-    const { title, creator, videoUrl } = video;
+    const { title, creator, videoUrl, _id: videoId } = video;
 
     const {
         likedVideos,
@@ -24,8 +24,7 @@ function SingleVideo() {
     const { auth } = useAuth();
     const { isAuthorized, token } = auth;
 
-    const { dispatchHistory, addToHistoryHandler } = useHistory();
-    isAuthorized && addToHistoryHandler(token, dispatchHistory, video);
+    const { dispatchHistory, addToHistoryHandler, history } = useHistory();
 
     const addToLikedVideos = async () => {
         isAuthorized
@@ -57,6 +56,13 @@ function SingleVideo() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        const videoInHistory = history.itemInHistory.some(
+            (video) => video._id === videoId
+        );
+
+        if (isAuthorized && !videoInHistory) {
+            addToHistoryHandler(token, dispatchHistory, video);
+        }
     }, [pathname]);
 
     return (

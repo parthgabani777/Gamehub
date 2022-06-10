@@ -38,7 +38,10 @@ function PlaylistCard({ playlist }) {
                 state={{ playlist }}
                 className="card-img bg-primary img-overlay"
             >
-                <img src="https://picsum.photos/id/132/300/200" alt="Image" />
+                <img
+                    src="https://i.ibb.co/vxKXjqb/png-clipart-computer-icons-playlist-music-lounge-miscellaneous-angle.png"
+                    alt="Image"
+                />
                 <div className="playlist-image overlay-content">
                     <i className="fas fa-list"></i>
                     <span className="text-m">{playlist.videos.length}</span>

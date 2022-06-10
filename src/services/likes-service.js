@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const getLikedVideos = async (encodedToken) => {
     try {
@@ -9,7 +10,7 @@ const getLikedVideos = async (encodedToken) => {
         });
         return data;
     } catch (error) {
-        console.log(error);
+        toast.error("Can not get liked videos");
     }
 };
 
@@ -26,7 +27,7 @@ const addToLikedVideos = async (encodedToken, video) => {
         );
         return true;
     } catch (error) {
-        console.log(error);
+        toast.error("Video can not be added to liked videos.");
         return false;
     }
 };
@@ -40,7 +41,7 @@ const removeFromLikedVideos = async (encodedToken, videoId) => {
         });
         return true;
     } catch (error) {
-        console.log(error);
+        toast.error("Video can not be removed from liked videos.");
         return false;
     }
 };
