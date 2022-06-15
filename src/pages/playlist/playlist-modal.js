@@ -34,21 +34,23 @@ function PlaylistModal({ video, modalToggler }) {
                 addPlaylistValue
             ));
         setAddPlaylistValue(defaultAddPlaylistValue);
+        setShowAddPlaylist(false);
     };
 
     const isVideoInPlaylist = (videos, video) => {
-        return findVideo(videos, video) && true;
+        const isPresent = findVideo(videos, video);
+        return isPresent ?? false;
     };
 
-    const addOrRemoveVideoHandler = (playlist, video) => {
-        return isVideoInPlaylist(playlist.videos, video)
-            ? removeVideoFromPlaylistHandler(
+    const addOrRemoveVideoHandler = async (playlist, video) => {
+        isVideoInPlaylist(playlist.videos, video)
+            ? await removeVideoFromPlaylistHandler(
                   auth.token,
                   dispatchPlaylists,
                   video,
                   playlist
               )
-            : addVideoToPlaylistHandler(
+            : await addVideoToPlaylistHandler(
                   auth.token,
                   dispatchPlaylists,
                   video,
@@ -76,11 +78,8 @@ function PlaylistModal({ video, modalToggler }) {
                                 )}
                                 className="text-s playlist-checkbox"
                                 id={playlist._id}
-                                onChange={async () => {
-                                    await addOrRemoveVideoHandler(
-                                        playlist,
-                                        video
-                                    );
+                                onChange={() => {
+                                    addOrRemoveVideoHandler(playlist, video);
                                 }}
                             />
                             <label htmlFor={playlist._id}>

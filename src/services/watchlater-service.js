@@ -25,6 +25,7 @@ const addToWatchLater = async (encodedToken, video) => {
                 },
             }
         );
+        toast.success("Added to watch later");
         return true;
     } catch (error) {
         toast.error("Videos can not be added to watch later.");
@@ -39,6 +40,7 @@ const removeFromWatchLater = async (encodedToken, videoId) => {
                 authorization: encodedToken,
             },
         });
+        toast.success("Removed From watch later");
         return true;
     } catch (error) {
         toast.error("Videos can not be removed from watch later.");

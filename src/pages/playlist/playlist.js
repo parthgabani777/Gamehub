@@ -35,6 +35,7 @@ function Playlist() {
                 dispatchPlaylists,
                 addPlaylistValue
             ));
+        setShowAddPlaylist(false);
     };
 
     return (
@@ -76,11 +77,17 @@ function Playlist() {
                 ""
             )}
 
-            <div className="card-container p-2">
-                {itemInPlaylists.map((playlist) => (
-                    <PlaylistCard playlist={playlist} key={playlist._id} />
-                ))}
-            </div>
+            {itemInPlaylists.length === 0 ? (
+                <span className="p-2 text-m text-light-text">
+                    No playlist created yet
+                </span>
+            ) : (
+                <div className="card-container p-2">
+                    {itemInPlaylists.map((playlist) => (
+                        <PlaylistCard playlist={playlist} key={playlist._id} />
+                    ))}
+                </div>
+            )}
         </section>
     );
 }

@@ -78,7 +78,12 @@ const removeVideoFromPlaylistHandler = async (
     video,
     playlist
 ) => {
-    (await removeVideoFromPlaylist(encodedToken, playlist._id, video._id)) &&
+    const isRemoved = await removeVideoFromPlaylist(
+        encodedToken,
+        playlist._id,
+        video._id
+    );
+    isRemoved &&
         dispatchPlaylists({
             type: playlistConstant.REMOVE_VIDEO_FROM_PLAYLIST,
             payload: { video, playlist },

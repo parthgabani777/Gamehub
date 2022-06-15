@@ -70,6 +70,7 @@ const addVideoToPlaylist = async (encodedToken, playlistId, video) => {
                 },
             }
         );
+        toast.success("Video added to playlist.");
         return true;
     } catch (error) {
         toast.error("Video can not be added to playlist.");
@@ -87,6 +88,7 @@ const removeVideoFromPlaylist = async (encodedToken, playlistId, videoId) => {
                 },
             }
         );
+        toast.success("Video removed from playlist.");
         return true;
     } catch (error) {
         toast.error("Video can not be removed from playlist.");

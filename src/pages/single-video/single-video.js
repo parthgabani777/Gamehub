@@ -2,7 +2,13 @@ import { React, useEffect, useState } from "react";
 import "./single-video.css";
 import { VideoCard } from "../../components/card/video-card";
 import { useLocation, useNavigate } from "react-router";
-import { useAuth, useHistory, useLikedVideos, useVideos } from "../../context";
+import {
+    useAuth,
+    useHistory,
+    useLikedVideos,
+    useVideos,
+    useWatchLater,
+} from "../../context";
 import { findVideo } from "../../utils/utils";
 import { PlaylistModal } from "../playlist/playlist-modal";
 
@@ -20,11 +26,37 @@ function SingleVideo() {
     } = useLikedVideos();
     const { itemInLikedVideos } = likedVideos;
 
+    const {
+        watchLater,
+        dispatchWatchLater,
+        addToWatchLaterHandler,
+        removeFromWatchLaterHandler,
+    } = useWatchLater();
+    const { itemInWatchLater } = watchLater;
+
     const navigation = useNavigate();
     const { auth } = useAuth();
     const { isAuthorized, token } = auth;
 
     const { dispatchHistory, addToHistoryHandler, history } = useHistory();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
+    const addToHistory = () => {
+        const videoExistInHistory = history.itemInHistory.some(
+            (video) => video._id === videoId
+        );
+
+        if (isAuthorized && !videoExistInHistory) {
+            addToHistoryHandler(token, dispatchHistory, video);
+        }
+    };
+
+    useEffect(() => {
+        addToHistory();
+    }, [state]);
 
     const addToLikedVideos = async () => {
         isAuthorized
@@ -52,18 +84,29 @@ function SingleVideo() {
         );
     };
 
-    const [showModal, setShowModal] = useState(false);
+    const addToWatchLater = () => {
+        isAuthorized
+            ? addToWatchLaterHandler(token, dispatchWatchLater, video)
+            : navigation("/login");
+    };
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        const videoInHistory = history.itemInHistory.some(
-            (video) => video._id === videoId
+    const removeFromWatchLater = () => {
+        isAuthorized &&
+            removeFromWatchLaterHandler(token, dispatchWatchLater, video);
+    };
+
+    const watchLaterBtn = () => {
+        return findVideo(itemInWatchLater, video) && isAuthorized ? (
+            <i
+                className="fas fa-clock active"
+                onClick={removeFromWatchLater}
+            ></i>
+        ) : (
+            <i className="fas fa-clock" onClick={addToWatchLater}></i>
         );
+    };
 
-        if (isAuthorized && !videoInHistory) {
-            addToHistoryHandler(token, dispatchHistory, video);
-        }
-    }, [pathname]);
+    const [showModal, setShowModal] = useState(false);
 
     return (
         <section className="p-2 bg-primary single-video">
@@ -71,9 +114,9 @@ function SingleVideo() {
                 <iframe
                     src={videoUrl}
                     title="YouTube video player"
-                    frameborder="0"
+                    frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
+                    allowFullScreen
                     className="video-frame"
                 ></iframe>
                 <div className="video-text py-2">
@@ -82,7 +125,7 @@ function SingleVideo() {
                         <div className="creator-name">{creator}</div>
                         <div className="video-action text-m">
                             {likesBtn()}
-                            <i className="fas fa-clock"></i>
+                            {watchLaterBtn()}
                             <i
                                 className="fas fa-list"
                                 onClick={() => setShowModal(!showModal)}

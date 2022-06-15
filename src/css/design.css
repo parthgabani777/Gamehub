@@ -9,3 +9,7 @@
     justify-content: start;
     align-items: start;
 }
+
+.text-light-text{
+    color: var(--light-text-color);
+}
