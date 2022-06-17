@@ -40,24 +40,19 @@ function SingleVideo() {
 
     const { dispatchHistory, addToHistoryHandler, history } = useHistory();
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [pathname]);
-
-    const addToHistory = () => {
-        const videoExistInHistory = history.itemInHistory.some(
+    const addToHistory = async () => {
+        const isVideoExistInHistory = history.itemInHistory.some(
             (video) => video._id === videoId
         );
 
-        if (isAuthorized && !videoExistInHistory) {
-            addToHistoryHandler(token, dispatchHistory, video);
+        if (isAuthorized && !isVideoExistInHistory) {
+            await addToHistoryHandler(token, dispatchHistory, video);
         }
     };
 
     useEffect(() => {
         addToHistory();
     }, [state]);
-
 
     const addToLikedVideos = async () => {
         isAuthorized

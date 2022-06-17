@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { useAuth, useHistory, useWatchLater } from "../../context";
+import { useAuth, useWatchLater } from "../../context";
 import { findVideo } from "../../utils/utils";
 import "./video-card.css";
 
@@ -20,15 +20,6 @@ function VideoCard({ video }) {
     const navigation = useNavigate();
     const { auth } = useAuth();
     const { isAuthorized, token } = auth;
-
-    const { history, dispatchHistory, addToHistoryHandler } = useHistory();
-    const { itemInHistory } = history;
-    const addToHistory = async () => {
-        isAuthorized
-            ? findVideo(itemInHistory, video) ||
-              (await addToHistoryHandler(token, dispatchHistory, video))
-            : null;
-    };
 
     const toggleShowShubmenu = () => {
         setShowSubmenu(!showSubmenu);
@@ -68,7 +59,6 @@ function VideoCard({ video }) {
             <Link
                 to="/singlevideo"
                 state={{ video }}
-                onClick={addToHistory}
                 className="card-img bg-primary"
             >
                 <img src={videoImage} alt={title} />
