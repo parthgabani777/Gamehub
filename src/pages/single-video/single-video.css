@@ -34,8 +34,8 @@
     cursor: pointer;
 }
 .single-video .fas.active {
-    color: blue;
-
+    color: var(--secondary-color);
+}
 
 @media only screen and (max-width: 1200px) {
     .single-video {
