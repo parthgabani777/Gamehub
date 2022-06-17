@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { loginUser, signupUser } from "../../services/auth-service";
 
 const loginHandler = async (loginCredentials, setAuthTokens, navigation) => {
@@ -20,7 +21,7 @@ const signoutHandler = async (removeAuthTokens, navigation) => {
         removeAuthTokens();
         navigation("/");
     } catch (error) {
-        console.log(error);
+        toast.error("Error while signing out");
     }
 };
 

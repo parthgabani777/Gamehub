@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const getHistory = async (encodedToken) => {
     try {
@@ -9,7 +10,7 @@ const getHistory = async (encodedToken) => {
         });
         return data;
     } catch (error) {
-        console.log(error);
+        toast.error("can not get history.");
     }
 };
 
@@ -26,7 +27,7 @@ const addToHistory = async (encodedToken, video) => {
         );
         return true;
     } catch (error) {
-        console.log(error);
+        toast.error("Video can not be added to history.");
         return false;
     }
 };
@@ -40,7 +41,7 @@ const removeFromHistory = async (encodedToken, videoId) => {
         });
         return true;
     } catch (error) {
-        console.log(error);
+        toast.error("Video can not be added to history.");
         return false;
     }
 };
@@ -54,7 +55,7 @@ const clearHistory = async (encodedToken) => {
         });
         return true;
     } catch (error) {
-        console.log(error);
+        toast.error("History can not be cleared");
         return false;
     }
 };

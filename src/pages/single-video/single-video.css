@@ -33,8 +33,7 @@
 .single-video .video-action > *:hover {
     cursor: pointer;
 }
-.single-video .fa-thumbs-up.active,
-.single-video .fa-clock.active {
+.single-video .fas.active {
     color: var(--secondary-color);
 }
 

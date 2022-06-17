@@ -22,16 +22,22 @@ function WatchLater() {
             <h1 className="text-l p-2">
                 Watch Later ({itemInWatchLater.length})
             </h1>
-            <div className="card-container p-2">
-                {itemInWatchLater.map((video) => (
-                    <ActionVideoCard
-                        video={video}
-                        key={video._id}
-                        dispatcher={dispatchWatchLater}
-                        removeHandler={removeFromWatchLaterHandler}
-                    />
-                ))}
-            </div>
+            {itemInWatchLater.length === 0 ? (
+                <span className="p-2 text-m text-light-text">
+                    No videos in watch later
+                </span>
+            ) : (
+                <div className="card-container p-2">
+                    {itemInWatchLater.map((video) => (
+                        <ActionVideoCard
+                            video={video}
+                            key={video._id}
+                            dispatcher={dispatchWatchLater}
+                            removeHandler={removeFromWatchLaterHandler}
+                        />
+                    ))}
+                </div>
+            )}
         </section>
     );
 }

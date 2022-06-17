@@ -21,16 +21,22 @@ function Likes() {
             <h1 className="text-l p-2">
                 Liked Videos ({itemInLikedVideos.length})
             </h1>
-            <div className="card-container p-2">
-                {itemInLikedVideos.map((video) => (
-                    <ActionVideoCard
-                        video={video}
-                        key={video._id}
-                        dispatcher={dispatchLikedVideos}
-                        removeHandler={removeFromLikedVideosHandler}
-                    />
-                ))}
-            </div>
+            {itemInLikedVideos.length === 0 ? (
+                <span className="p-2 text-m text-light-text">
+                    No liked video
+                </span>
+            ) : (
+                <div className="card-container p-2">
+                    {itemInLikedVideos.map((video) => (
+                        <ActionVideoCard
+                            video={video}
+                            key={video._id}
+                            dispatcher={dispatchLikedVideos}
+                            removeHandler={removeFromLikedVideosHandler}
+                        />
+                    ))}
+                </div>
+            )}
         </section>
     );
 }

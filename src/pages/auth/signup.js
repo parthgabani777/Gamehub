@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/auth-context";
+import { toast } from "react-toastify";
 import "./auth.css";
 
 function Signup() {
@@ -142,13 +143,20 @@ function Signup() {
                         <button
                             className="btn btn-light auth-btn br-1"
                             onClick={async () => {
-                                signupCredentials.password ===
-                                    signupCredentials.confirmPassword &&
-                                    (await signupHandler(
-                                        signupCredentials,
-                                        setAuthTokens,
-                                        navigation
-                                    ));
+                                try {
+                                    signupCredentials.password ===
+                                    signupCredentials.confirmPassword
+                                        ? await signupHandler(
+                                              signupCredentials,
+                                              setAuthTokens,
+                                              navigation
+                                          )
+                                        : toast.error(
+                                              "Password and Confirm passwor should be same"
+                                          );
+                                } catch (error) {
+                                    toast.error(error);
+                                }
                             }}
                         >
                             Create an Account

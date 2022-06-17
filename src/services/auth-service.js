@@ -8,7 +8,14 @@ const loginUser = async (loginCredentials) => {
         });
         return data;
     } catch (error) {
-        console.log(error);
+        switch (error.response.status) {
+            case 401:
+                throw "Wrong password.";
+            case 404:
+                throw "Username not found.";
+            default:
+                throw "Login failed.";
+        }
     }
 };
 
@@ -22,7 +29,12 @@ const signupUser = async (signupCredentials) => {
         });
         return data;
     } catch (error) {
-        console.log(error);
+        switch (error.response.status) {
+            case 422:
+                throw "Email alrady exists.";
+            default:
+                throw "Signup failed.";
+        }
     }
 };
 

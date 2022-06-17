@@ -10,6 +10,7 @@ import {
     History,
     SingleVideo,
     Likes,
+    NotFound,
 } from "./";
 import { PlaylistVideos } from "./playlist/playlist-videos";
 
@@ -23,6 +24,7 @@ function PageRoutes() {
     return (
         <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="*" element={<NotFound />} />
             <Route path="homePage" element={<HomePage />} />
             <Route path="videos" element={<Videos />} />
             <Route path="singlevideo" element={<SingleVideo />} />

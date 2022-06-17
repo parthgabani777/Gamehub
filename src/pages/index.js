@@ -7,6 +7,7 @@ import { WatchLater } from "./watch-later/watch-later";
 import { History } from "./history/history";
 import { SingleVideo } from "./single-video/single-video";
 import { Likes } from "./likes/likes";
+import { NotFound } from "./notfound/notfound";
 
 export {
     HomePage,
@@ -18,4 +19,5 @@ export {
     History,
     SingleVideo,
     Likes,
+    NotFound,
 };

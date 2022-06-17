@@ -16,7 +16,7 @@ function SingleVideo() {
     const { videos } = useVideos();
     const { state } = useLocation();
     const { video } = state;
-    const { title, creator, videoUrl } = video;
+    const { title, creator, videoUrl, _id: videoId } = video;
 
     const {
         likedVideos,
@@ -38,15 +38,21 @@ function SingleVideo() {
     const { auth } = useAuth();
     const { isAuthorized, token } = auth;
 
-    const { history, dispatchHistory, addToHistoryHandler } = useHistory();
-    const { itemInHistory } = history;
+    const { dispatchHistory, addToHistoryHandler, history } = useHistory();
 
-    useEffect(async () => {
-        isAuthorized
-            ? findVideo(itemInHistory, video) ||
-              addToHistoryHandler(token, dispatchHistory, video)
-            : null;
-    }, []);
+    const addToHistory = async () => {
+        const isVideoExistInHistory = history.itemInHistory.some(
+            (video) => video._id === videoId
+        );
+
+        if (isAuthorized && !isVideoExistInHistory) {
+            await addToHistoryHandler(token, dispatchHistory, video);
+        }
+    };
+
+    useEffect(() => {
+        addToHistory();
+    }, [state]);
 
     const addToLikedVideos = async () => {
         isAuthorized
@@ -74,19 +80,15 @@ function SingleVideo() {
         );
     };
 
-    const addToWatchLater = async () => {
+    const addToWatchLater = () => {
         isAuthorized
-            ? await addToWatchLaterHandler(token, dispatchWatchLater, video)
+            ? addToWatchLaterHandler(token, dispatchWatchLater, video)
             : navigation("/login");
     };
 
-    const removeFromWatchLater = async () => {
+    const removeFromWatchLater = () => {
         isAuthorized &&
-            (await removeFromWatchLaterHandler(
-                token,
-                dispatchWatchLater,
-                video
-            ));
+            removeFromWatchLaterHandler(token, dispatchWatchLater, video);
     };
 
     const watchLaterBtn = () => {

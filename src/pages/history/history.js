@@ -34,16 +34,22 @@ function History() {
                 </button>
             </div>
 
-            <div className="card-container p-2">
-                {itemInHistory.map((video) => (
-                    <ActionVideoCard
-                        video={video}
-                        key={video._id}
-                        dispatcher={dispatchHistory}
-                        removeHandler={removeFromHistoryHandler}
-                    />
-                ))}
-            </div>
+            {itemInHistory.length === 0 ? (
+                <span className="p-2 text-m text-light-text">
+                    No video in history
+                </span>
+            ) : (
+                <div className="card-container p-2">
+                    {itemInHistory.map((video) => (
+                        <ActionVideoCard
+                            video={video}
+                            key={video._id}
+                            dispatcher={dispatchHistory}
+                            removeHandler={removeFromHistoryHandler}
+                        />
+                    ))}
+                </div>
+            )}
         </section>
     );
 }

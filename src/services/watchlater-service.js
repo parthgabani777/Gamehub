@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const getWatchLater = async (encodedToken) => {
     try {
@@ -9,7 +10,7 @@ const getWatchLater = async (encodedToken) => {
         });
         return data;
     } catch (error) {
-        console.log(error);
+        toast.error("Can not get watch later videos.");
     }
 };
 
@@ -24,9 +25,10 @@ const addToWatchLater = async (encodedToken, video) => {
                 },
             }
         );
+        toast.success("Added to watch later");
         return true;
     } catch (error) {
-        console.log(error);
+        toast.error("Videos can not be added to watch later.");
         return false;
     }
 };
@@ -38,9 +40,10 @@ const removeFromWatchLater = async (encodedToken, videoId) => {
                 authorization: encodedToken,
             },
         });
+        toast.success("Removed From watch later");
         return true;
     } catch (error) {
-        console.log(error);
+        toast.error("Videos can not be removed from watch later.");
         return false;
     }
 };

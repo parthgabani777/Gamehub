@@ -8,6 +8,28 @@ header {
 }
 .nav-search {
     display: flex;
+    position: relative;
+    padding: 0;
+}
+.suggestion {
+    position: absolute;
+    top: 105%;
+    background-color: black;
+    color: white;
+    font-size: 1.6rem;
+    z-index: 10;
+    max-height: 500px;
+    min-width: 100%;
+    overflow-y: auto;
+}
+
+.suggestion > * {
+    padding: 1rem 2rem;
+    display: block;
+}
+.suggestion a:hover {
+    cursor: pointer;
+    background-color: #333;
 }
 .search-box {
     outline: none;

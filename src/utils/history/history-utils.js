@@ -17,7 +17,6 @@ const getHistoryHandler = async (encodedToken, dispatchHistory) => {
 };
 
 const addToHistoryHandler = async (encodedToken, dispatchHistory, video) => {
-    
     (await addToHistory(encodedToken, video)) &&
         dispatchHistory({
             type: historyConstant.ADD_TO_HISTORY,

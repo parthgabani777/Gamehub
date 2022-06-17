@@ -1,11 +1,13 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import "./playlist.css";
 import { PlaylistCard } from "../../components/card/playlist-card";
 import { useAuth, usePlaylists } from "../../context";
+import { useNavigate } from "react-router";
 
 function Playlist() {
     const { playlists, dispatchPlaylists, addPlaylistHandler } = usePlaylists();
     const { itemInPlaylists } = playlists;
+    const navigation = useNavigate();
 
     const { auth } = useAuth();
     const { token } = auth;
@@ -21,6 +23,10 @@ function Playlist() {
 
     const [showAddPlaylist, setShowAddPlaylist] = useState(false);
 
+    useEffect(() => {
+        auth.isAuthorized || navigation("/login");
+    }, []);
+
     const addPlaylist = async () => {
         setAddPlaylistValue(defaultAddPlaylistValue);
         addPlaylistValue.title != "" &&
@@ -29,6 +35,7 @@ function Playlist() {
                 dispatchPlaylists,
                 addPlaylistValue
             ));
+        setShowAddPlaylist(false);
     };
 
     return (
@@ -70,11 +77,17 @@ function Playlist() {
                 ""
             )}
 
-            <div className="card-container p-2">
-                {itemInPlaylists.map((playlist) => (
-                    <PlaylistCard playlist={playlist} key={playlist._id} />
-                ))}
-            </div>
+            {itemInPlaylists.length === 0 ? (
+                <span className="p-2 text-m text-light-text">
+                    No playlist created yet
+                </span>
+            ) : (
+                <div className="card-container p-2">
+                    {itemInPlaylists.map((playlist) => (
+                        <PlaylistCard playlist={playlist} key={playlist._id} />
+                    ))}
+                </div>
+            )}
         </section>
     );
 }
