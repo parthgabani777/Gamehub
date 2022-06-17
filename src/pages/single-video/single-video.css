@@ -35,7 +35,7 @@
 }
 .single-video .fas.active {
     color: blue;
-}
+
 
 @media only screen and (max-width: 1200px) {
     .single-video {

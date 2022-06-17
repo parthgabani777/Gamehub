@@ -14,7 +14,7 @@ import { PlaylistModal } from "../playlist/playlist-modal";
 
 function SingleVideo() {
     const { videos } = useVideos();
-    const { pathname, state } = useLocation();
+    const { state } = useLocation();
     const { video } = state;
     const { title, creator, videoUrl, _id: videoId } = video;
 
@@ -57,6 +57,7 @@ function SingleVideo() {
     useEffect(() => {
         addToHistory();
     }, [state]);
+
 
     const addToLikedVideos = async () => {
         isAuthorized
@@ -128,7 +129,11 @@ function SingleVideo() {
                             {watchLaterBtn()}
                             <i
                                 className="fas fa-list"
-                                onClick={() => setShowModal(!showModal)}
+                                onClick={() =>
+                                    isAuthorized
+                                        ? setShowModal(!showModal)
+                                        : navigation("/login")
+                                }
                             ></i>
                         </div>
                     </div>

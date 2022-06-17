@@ -31,6 +31,14 @@ function PlaylistCard({ playlist }) {
         await removePlaylistHandler(auth.token, dispatchPlaylists, playlist);
     };
 
+    const defaultPlaylistImage =
+        "https://www.linkpicture.com/q/LPic625bd78f1d2351633196871.jpg";
+
+    const playlistImage =
+        playlist.videos.length > 0
+            ? playlist.videos[0].videoImage
+            : defaultPlaylistImage;
+
     return (
         <div className="card card-badge box-shadow video-card playlist-card">
             <Link

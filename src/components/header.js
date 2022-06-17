@@ -49,9 +49,9 @@ function Header() {
             <nav className="navbar bg-primary">
                 <div className="nav-title">
                     <h1 className="text-xl">
-                        <a to="homepage" className="btn">
+                        <Link to="homepage" className="btn">
                             GameHub
-                        </a>
+                        </Link>
                     </h1>
                 </div>
 
