@@ -31,8 +31,7 @@ function PlaylistCard({ playlist }) {
         await removePlaylistHandler(auth.token, dispatchPlaylists, playlist);
     };
 
-    const defaultPlaylistImage =
-        "https://www.linkpicture.com/q/LPic625bd78f1d2351633196871.jpg";
+    const defaultPlaylistImage = "https://i.imgur.com/wWPBmKO.jpg";
 
     const playlistImage =
         playlist.videos.length > 0
@@ -46,7 +45,7 @@ function PlaylistCard({ playlist }) {
                 state={{ playlist }}
                 className="card-img bg-primary img-overlay"
             >
-                <img src="https://i.ibb.co/61zW4rr/WeyM8.jpg" alt="Image" />
+                <img src={playlistImage} alt="Image" className="" />
                 <div className="playlist-image overlay-content">
                     <i className="fas fa-list"></i>
                     <span className="text-m">{playlist.videos.length}</span>
