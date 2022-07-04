@@ -12,7 +12,7 @@ const loginUser = async (loginCredentials) => {
             case 401:
                 throw "Wrong password.";
             case 404:
-                throw "Username not found.";
+                throw "Email not found.";
             default:
                 throw "Login failed.";
         }

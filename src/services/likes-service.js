@@ -25,6 +25,8 @@ const addToLikedVideos = async (encodedToken, video) => {
                 },
             }
         );
+        toast.dismiss();
+        toast.success("Added to liked videos");
         return true;
     } catch (error) {
         toast.error("Video can not be added to liked videos.");
@@ -39,6 +41,8 @@ const removeFromLikedVideos = async (encodedToken, videoId) => {
                 authorization: encodedToken,
             },
         });
+        toast.dismiss();
+        toast.error("Removed from liked videos");
         return true;
     } catch (error) {
         toast.error("Video can not be removed from liked videos.");
