@@ -10,8 +10,8 @@ function Signup() {
     const { setAuthTokens, signupHandler } = useAuth();
 
     const defaultSignupCredentials = {
-        firstname: "",
-        lastname: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -19,44 +19,77 @@ function Signup() {
     const [signupCredentials, setSignupCredentials] = useState(
         defaultSignupCredentials
     );
+    const { firstName, lastName, email, password, confirmPassword } =
+        signupCredentials;
+    const fillGuestDetails = (e) => {
+        e.preventDefault();
+        setSignupCredentials({
+            firstName: "john",
+            lastName: "doe",
+            email: "johndoe@gmail.com",
+            password: "john@asdf",
+            confirmPassword: "john@asdf",
+        });
+    };
+    const submitSignupCredentials = async (e) => {
+        e.preventDefault();
+        try {
+            signupCredentials.password === signupCredentials.confirmPassword
+                ? await signupHandler(
+                      signupCredentials,
+                      setAuthTokens,
+                      navigation
+                  )
+                : toast.error("Password and Confirm password should be same.");
+        } catch (error) {
+            toast.error(error);
+        }
+    };
 
     const [showPassword, setShowPassword] = useState(false);
 
     return (
         <section className="signup bg-primary">
             <div className="auth text-s">
-                <div className="auth-form box-shadow p-4">
+                <form
+                    className="auth-form box-shadow p-4"
+                    onSubmit={submitSignupCredentials}
+                >
                     <h3 className="text-l text-center py-1">Signup</h3>
 
                     <div className="input-group py-1">
-                        <label htmlFor="firstname">Firstname</label>
+                        <label htmlFor="firstname">First Name</label>
                         <input
                             type="text"
                             className="input text-s"
-                            placeholder="firstname"
+                            placeholder="John"
                             id="firstname"
+                            value={firstName}
                             onChange={(e) => {
                                 setSignupCredentials({
                                     ...signupCredentials,
-                                    firstname: e.target.value,
+                                    firstName: e.target.value,
                                 });
                             }}
+                            required
                         />
                     </div>
 
                     <div className="input-group py-1">
-                        <label htmlFor="lastname">Lastname</label>
+                        <label htmlFor="lastname">Last Name</label>
                         <input
                             type="text"
                             className="input text-s"
                             id="lastname"
-                            placeholder="lastname"
+                            placeholder="doe"
+                            value={lastName}
                             onChange={(e) => {
                                 setSignupCredentials({
                                     ...signupCredentials,
-                                    lastname: e.target.value,
+                                    lastName: e.target.value,
                                 });
                             }}
+                            required
                         />
                     </div>
 
@@ -67,12 +100,14 @@ function Signup() {
                             className="input text-s"
                             id="email"
                             placeholder="mail@gmail.com"
+                            value={email}
                             onChange={(e) => {
                                 setSignupCredentials({
                                     ...signupCredentials,
                                     email: e.target.value,
                                 });
                             }}
+                            required
                         />
                     </div>
 
@@ -84,12 +119,14 @@ function Signup() {
                                 className="input text-s"
                                 id="password"
                                 placeholder="************"
+                                value={password}
                                 onChange={(e) => {
                                     setSignupCredentials({
                                         ...signupCredentials,
                                         password: e.target.value,
                                     });
                                 }}
+                                required
                             />
                             <i
                                 className={`fas ${
@@ -104,7 +141,7 @@ function Signup() {
 
                     <div className="input-group py-1">
                         <label htmlFor="confirm-password">
-                            Confitm Password
+                            Confirm Password
                         </label>
                         <div className="password-input">
                             <input
@@ -112,12 +149,14 @@ function Signup() {
                                 className="input text-s"
                                 id="confirm-password"
                                 placeholder="************"
+                                value={confirmPassword}
                                 onChange={(e) => {
                                     setSignupCredentials({
                                         ...signupCredentials,
                                         confirmPassword: e.target.value,
                                     });
                                 }}
+                                required
                             />
                             <i
                                 className={`fas ${
@@ -130,36 +169,18 @@ function Signup() {
                         </div>
                     </div>
 
-                    <div className="input-checkbox py-1">
-                        <div>
-                            <input type="checkbox" id="remember_me" />
-                            <label htmlFor="remember_me">
-                                I accept all terms and conditions
-                            </label>
-                        </div>
+                    <div className="py-1 text-center">
+                        <button className="btn btn-light auth-btn br-1">
+                            Create an Account
+                        </button>
                     </div>
 
                     <div className="py-1 text-center">
                         <button
                             className="btn btn-light auth-btn br-1"
-                            onClick={async () => {
-                                try {
-                                    signupCredentials.password ===
-                                    signupCredentials.confirmPassword
-                                        ? await signupHandler(
-                                              signupCredentials,
-                                              setAuthTokens,
-                                              navigation
-                                          )
-                                        : toast.error(
-                                              "Password and Confirm passwor should be same"
-                                          );
-                                } catch (error) {
-                                    toast.error(error);
-                                }
-                            }}
+                            onClick={fillGuestDetails}
                         >
-                            Create an Account
+                            Fill guest details
                         </button>
                     </div>
 
@@ -168,7 +189,7 @@ function Signup() {
                             Already have account
                         </Link>
                     </div>
-                </div>
+                </form>
             </div>
         </section>
     );
